@@ -16,3 +16,15 @@ const MessageSchema: Schema<Message> = new Schema({
         default: Date.now
     }
 })
+
+// user interface
+
+export interface User extends Document{
+    username:string
+    email:string
+    password:string
+    verifyCode:string
+    verifyCodeExpiry:Date
+    isAcceptMessage:boolean
+    message:Message[]
+}
