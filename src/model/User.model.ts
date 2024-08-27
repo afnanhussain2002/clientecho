@@ -25,6 +25,45 @@ export interface User extends Document{
     password:string
     verifyCode:string
     verifyCodeExpiry:Date
+    isVerified: boolean
     isAcceptMessage:boolean
-    message:Message[]
+    messages:Message[]
 }
+
+const UserSchema: Schema<User> = new Schema({
+    username:{
+        type:String,
+        required:[true, "Username is required"],
+        trim:true,
+        unique:true,
+    },
+   email:{
+    type:String,
+    required:[true, "Email is required"],
+    unique:true,
+    match:[/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please use a valid email address"],
+   },
+   password:{
+    type:String,
+    required:[true, "Password is required"],
+   },
+   verifyCode:{
+    type:String,
+    required:[true, "Verify code is required"],
+   },
+   verifyCodeExpiry:{
+    type: Date,
+    required:[true, "Verify code expiry is required"],
+   },
+   isVerified:{
+    type: Boolean,
+    default:false
+   },
+   isAcceptMessage:{
+    type: Boolean,
+    default:true
+   },
+   messages: [MessageSchema]
+
+
+})
