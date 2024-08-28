@@ -11,4 +11,9 @@ async function dbConnect(): Promise<void>{
         console.log("Already connected to database");
         return
     }
+    try {
+        
+    } catch (error) {
+        
+    }
 }
