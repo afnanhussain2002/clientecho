@@ -49,7 +49,16 @@ export async function POST(request: Request){
         verifyCode
     )
 
-    
+    if (!emailResponse.success) {
+        return Response.json({
+            success:false,
+            message:emailResponse.message
+        },{status:500})
+    }
+
+
+
+
       
     }
     } catch (error) {
