@@ -40,5 +40,20 @@ export const authOptions: NextAuthOptions = {
                 }
               }
         })
-    ]
+    ],
+    callbacks:{
+        async session({ session, token }) {
+            return session
+          },
+          async jwt({ token, user  }) {
+            return token
+          }
+    },
+pages:{
+    signIn:'/sign-in'
+},
+session:{
+    strategy:"jwt"
+},
+secret:process.env.NEXTAUTH_SECRET,
 }
