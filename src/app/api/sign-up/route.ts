@@ -40,6 +40,16 @@ export async function POST(request: Request){
       })
       
       await newUser.save()
+
+    //   send verification email 
+
+    const emailResponse = await sendVerificationEmail(
+        email,
+        username,
+        verifyCode
+    )
+
+    
       
     }
     } catch (error) {
