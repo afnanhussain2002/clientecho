@@ -56,6 +56,11 @@ export async function POST(request: Request){
         },{status:500})
     }
 
+    return Response.json({
+        success:true,
+        message:"User register successfully. Please verify your email"
+    },{status:500})
+
 
 
 
