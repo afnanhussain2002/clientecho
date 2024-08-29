@@ -22,7 +22,12 @@ export async function POST(request: Request){
    const existingUserByEmail = await UserModel.findOne({email})
    const verifyCode = Math.floor(100000 + Math.random() * 900000).toString()
     if (existingUserByEmail) {
-        true
+       if (existingUserByEmail.isVerified) {
+        return Response.json({
+            success:false,
+            message:"User already exists with this email",
+        },{status:500})
+       }
     }else{
       const hashedPassword = await bcrypt.hash(password,10)
       const expiryDate = new Date()
