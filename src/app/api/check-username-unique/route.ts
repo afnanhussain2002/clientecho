@@ -55,15 +55,6 @@ export async function GET(request:Request){
     {status:500}
 )
 
-
-
-
-
-
-
-
-
-
         
     } catch (error) {
         console.log("Error from checking username", error);
