@@ -47,6 +47,15 @@ export async function GET(request:Request){
         {status:500}
     )
    }
+   return Response.json(
+    {
+        success:true,
+        message:"Username is unique"
+    },
+    {status:500}
+)
+
+
 
 
 
