@@ -16,6 +16,12 @@ export async function GET(request:Request){
         
     } catch (error) {
         console.log("Error from checking username", error);
-        
+        return Response.json(
+            {
+                success:false,
+                message:"Username validation error"
+            },
+            {status:500}
+        )
     }
 }
