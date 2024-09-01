@@ -45,6 +45,14 @@ export async function POST(request:Request){
                 success:false,
                 message:"Verification code has been expired. Please sign up again for get a new code"
             },
+            {status:400}
+        )
+      }else{
+        return Response.json(
+            {
+                success:false,
+                message:"Incorrect verification code"
+            },
             {status:404}
         )
       }
