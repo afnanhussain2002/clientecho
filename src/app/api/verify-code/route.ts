@@ -31,7 +31,17 @@ export async function POST(request:Request){
       if (isCodeValid && isCodeNotExpired) {
         user.isVerified = true
         await user.save()
+
+        return Response.json(
+            {
+                success:true,
+                message:" account verified successfully"
+            },
+            {status:201}
+        )
       }
+
+
 
     } catch (error) {
         console.log("Error from checking username", error);
