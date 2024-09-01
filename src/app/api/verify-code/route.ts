@@ -13,7 +13,16 @@ export async function POST(request:Request){
         username: decodeUsername
       })
 
-      
+      if (!user) {
+        
+        return Response.json(
+            {
+                success:false,
+                message:" user not found"
+            },
+            {status:500}
+        )
+      }
     } catch (error) {
         console.log("Error from checking username", error);
         return Response.json(
