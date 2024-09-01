@@ -24,7 +24,17 @@ export async function GET(request:Request){
 
     if (!result.success) {
         const usernameErrors = result.error.format().username?._errors || []
+
+        return Response.json(
+            {
+                success:false,
+                message:usernameErrors.length > 0? usernameErrors.join(', ') : 'Invalid query parameters'
+            },
+            {status:500}
+        )
     }
+
+
 
 
 
