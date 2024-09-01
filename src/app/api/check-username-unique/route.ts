@@ -17,6 +17,11 @@ export async function GET(request:Request){
       const queryParam = {
         username:searchParams.get('username')
       }
+    // validate with zod
+
+    const result = UsernameQuerySchema.safeParse(queryParam)
+    
+
         
     } catch (error) {
         console.log("Error from checking username", error);
