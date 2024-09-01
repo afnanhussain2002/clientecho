@@ -13,6 +13,10 @@ export async function GET(request:Request){
     await dbConnect()
 
     try {
+      const {searchParams} = new URL(request.url)
+      const queryParam = {
+        username:searchParams.get('username')
+      }
         
     } catch (error) {
         console.log("Error from checking username", error);
