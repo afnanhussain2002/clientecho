@@ -20,9 +20,19 @@ export async function POST(request:Request){
                 success:false,
                 message:" user not found"
             },
-            {status:500}
+            {status:404}
         )
       }
+
+      const isCodeValid = user.verifyCode === code
+
+      const isCodeNotExpired  = new Date(user.verifyCodeExpiry) > new Date()
+
+      if (isCodeValid && isCodeNotExpired) {
+        user.isVerified = true
+        await user.save()
+      }
+
     } catch (error) {
         console.log("Error from checking username", error);
         return Response.json(
