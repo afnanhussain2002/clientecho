@@ -18,4 +18,15 @@ export async function POST(request:Request){
             { status: 401 }
           );
     }
+    // is user accept message
+
+    if (!user.isAcceptMessage) {
+        return Response.json(
+            {
+              success: false,
+              message: "User not accept message",
+            },
+            { status: 401 }
+          );
+    }
 } 
