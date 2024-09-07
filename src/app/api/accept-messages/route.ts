@@ -70,4 +70,6 @@ export async function GET(request: Request) {
       { status: 401 }
     );
   }
+
+  const userId = user._id;
 }
