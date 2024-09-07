@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/dbConnect";
 import { getServerSession, User } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
+import mongoose from "mongoose";
 
 export async function POST(request:Request){
     dbConnect()
@@ -16,6 +17,6 @@ export async function POST(request:Request){
           { status: 401 }
         );
     }
-    const userId = user._id
+    const userId = new mongoose.Types.ObjectId(user._id)
 
 }
