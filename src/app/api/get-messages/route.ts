@@ -4,6 +4,7 @@ import { authOptions } from "../auth/[...nextauth]/options";
 import mongoose from "mongoose";
 import UserModel from "@/model/User.model";
 
+
 export async function POST(request:Request){
     dbConnect()
 
@@ -22,8 +23,21 @@ export async function POST(request:Request){
 
     try {
         const user = await UserModel.aggregate([
-            {$match: {id:'$messages'}}
+            {$match: {id:'$messages'}},
+            {$unwind:'$messages'},
+            {$sort:{'messages.createdAt':-1}},
+            {$group:{_id:'$_id', message:{$push:'$messages'}}}
         ])
+
+        if (!user || user.length === 0) {
+            return Response.json(
+                {
+                  success: false,
+                  message: "User not found",
+                },
+                { status: 401 }
+              );
+        }
     } catch (error) {
         
     }
