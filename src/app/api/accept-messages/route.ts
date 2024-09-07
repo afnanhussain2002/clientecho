@@ -97,9 +97,9 @@ export async function GET(request: Request) {
     return Response.json(
       {
         success: false,
-        message: "Unauthorized",
+        message: "Error is getting message accept status",
       },
-      { status: 401 }
+      { status: 501 }
     );
   }
 }
