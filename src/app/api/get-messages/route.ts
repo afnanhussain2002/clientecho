@@ -16,5 +16,6 @@ export async function POST(request:Request){
           { status: 401 }
         );
     }
+    const userId = user._id
 
 }
