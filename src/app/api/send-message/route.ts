@@ -46,7 +46,7 @@ try {
     return Response.json(
         {
           success: false,
-          message: "Unauthorized",
+          message: "Something went wrong when send the message",
         },
         { status: 401 }
       );
