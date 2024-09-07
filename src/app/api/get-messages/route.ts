@@ -38,6 +38,13 @@ export async function POST(request:Request){
                 { status: 401 }
               );
         }
+        return Response.json(
+            {
+              success: true,
+              messages: user[0].messages,
+            },
+            { status: 200 }
+          );
     } catch (error) {
         
     }
