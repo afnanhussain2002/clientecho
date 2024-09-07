@@ -6,5 +6,16 @@ export async function POST(request:Request){
     await dbConnect()
 
     const {username, content} = await request.json()
-    
+
+    const user = await UserModel.findOne({username})
+
+    if (!user) {
+        return Response.json(
+            {
+              success: false,
+              message: "User not found",
+            },
+            { status: 401 }
+          );
+    }
 } 
