@@ -29,4 +29,9 @@ export async function POST(request:Request){
             { status: 401 }
           );
     }
+
+    const newMessage = {content, createdAt: new Date()}
+
+    user.messages.push(newMessage as Message)
+    await user.save()
 } 
