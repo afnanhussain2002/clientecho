@@ -2,6 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import { getServerSession, User } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/options";
 import mongoose from "mongoose";
+import UserModel from "@/model/User.model";
 
 export async function POST(request:Request){
     dbConnect()
@@ -18,5 +19,15 @@ export async function POST(request:Request){
         );
     }
     const userId = new mongoose.Types.ObjectId(user._id)
+
+    try {
+        const user = await UserModel.aggregate([
+            {$match: {id:'$messages'}}
+        ])
+    } catch (error) {
+        
+    }
+
+
 
 }
