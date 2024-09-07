@@ -72,4 +72,17 @@ export async function GET(request: Request) {
   }
 
   const userId = user._id;
+  try {
+   const foundUser = await UserModel.findById(userId)
+   
+  } catch (error) {
+    console.log("failed to update the user status to accept messages", error);
+    return Response.json(
+      {
+        success: false,
+        message: "Unauthorized",
+      },
+      { status: 401 }
+    );
+  }
 }
