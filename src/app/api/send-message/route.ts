@@ -43,12 +43,13 @@ try {
             { status: 201 }
           );
 } catch (error) {
+    console.log('Error form send message', error);
     return Response.json(
         {
           success: false,
           message: "Something went wrong when send the message",
         },
-        { status: 401 }
+        { status: 501 }
       );
 }
 } 
