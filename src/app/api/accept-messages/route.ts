@@ -20,6 +20,18 @@ export async function POST(request: Request) {
 
   const userId = user._id
   const {isAcceptMessages} = await request.json()
-
+  
+  try {
+    
+  } catch (error) {
+    console.log("failed to update the user status to accept messages",error)
+    return Response.json(
+      {
+        success: false,
+        message: "Unauthorized",
+      },
+      { status: 401 }
+    )
+  }
 
 }
