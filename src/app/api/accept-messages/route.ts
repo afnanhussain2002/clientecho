@@ -18,5 +18,8 @@ export async function POST(request: Request) {
     )
   }
 
+  const userId = user._id
+  const {isAcceptMessages} = await request.json()
+
 
 }
