@@ -8,5 +8,15 @@ export async function POST(request: Request) {
    
    const session = await getServerSession(authOptions)
    const user: User = session?.user
+  if (!user) {
+    return Response.json(
+      {
+        success: false,
+        message: "Unauthorized",
+      },
+      { status: 401 }
+    )
+  }
+
 
 }
