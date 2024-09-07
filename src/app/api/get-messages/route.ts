@@ -6,7 +6,7 @@ import UserModel from "@/model/User.model";
 
 
 export async function POST(request:Request){
-    dbConnect()
+   await dbConnect()
 
     const session = await getServerSession(authOptions)
     const user: User = session?.user as User
