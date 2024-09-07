@@ -74,7 +74,24 @@ export async function GET(request: Request) {
   const userId = user._id;
   try {
    const foundUser = await UserModel.findById(userId)
-   
+
+    if (!foundUser) {
+      return Response.json(
+        {
+          success: false,
+          message: "User not found",
+        },
+        { status: 404 }
+      )
+    }
+    return Response.json(
+      {
+        success: true,
+        isAcceptingMessages: foundUser.isAcceptMessage,
+        message: "User not found",
+      },
+      { status: 202 }
+    )
   } catch (error) {
     console.log("failed to update the user status to accept messages", error);
     return Response.json(
