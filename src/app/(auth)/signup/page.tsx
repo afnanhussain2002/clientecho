@@ -4,13 +4,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from 'next/link';
+import { useDebounceCallback } from 'usehooks-ts'
 
 const SingUp = () => {
   const [username, setUsername] = useState('')
   const [usernameMessage, setUsernameMessage] = useState('')
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState('')
-  
+
+  const debounced = useDebounceCallback(setUsername, 500)
+
   return (
     <div>
       
