@@ -31,6 +31,7 @@ const SingUp = () => {
   })
 
   useEffect(()=>{
+
  const checkUsernameUnique = async() =>{
   setIsCheckingUsername(true)
   setUsernameMessage('')
@@ -44,6 +45,7 @@ const SingUp = () => {
     setIsCheckingUsername(false)
   }
  }
+ checkUsernameUnique()
   },[debounced])
 
   return (
