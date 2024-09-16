@@ -19,6 +19,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Loader } from "lucide-react";
 
 const SingUp = () => {
   const [username, setUsername] = useState("");
@@ -140,6 +142,16 @@ const SingUp = () => {
               </FormItem>
             )}
           />
+          <Button type="submit" disabled={isSubmitting}>
+
+           {
+            isSubmitting ?(
+              <>
+              <Loader/>Please Wait
+              </>
+            ):('Sign up')
+           }
+          </Button>
         </form>
       </Form>
     </div>
