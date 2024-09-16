@@ -48,6 +48,9 @@ const SingUp = () => {
  checkUsernameUnique()
   },[debounced])
 
+  const onSubmit = async(data: z.infer<typeof singUpSchema>)=> {
+     
+  }
   return (
     <div>
       
