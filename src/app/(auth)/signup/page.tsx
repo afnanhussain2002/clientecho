@@ -66,6 +66,7 @@ const SingUp = () => {
         description:errorMessage,
         variant:"destructive"
       })
+      setIsSubmitting(false)
      }
   }
   return (
