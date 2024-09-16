@@ -6,6 +6,8 @@ import { z } from "zod"
 import Link from 'next/link';
 import { useDebounceCallback } from 'usehooks-ts'
 import { useToast } from "@/hooks/use-toast"
+import { useRouter } from 'next/navigation';
+import { singUpSchema } from '@/schemas/signUpSchema';
 
 
 const SingUp = () => {
@@ -16,6 +18,15 @@ const SingUp = () => {
 
   const debounced = useDebounceCallback(setUsername, 500)
   const { toast } = useToast()
+  const router = useRouter()
+  const form = useForm<z.infer<typeof singUpSchema>>({
+    resolver:zodResolver(singUpSchema),
+    defaultValues:{
+      username:'',
+      email:'',
+      password:''
+    }
+  })
 
   return (
     <div>
