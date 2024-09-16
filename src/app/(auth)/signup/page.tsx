@@ -8,7 +8,8 @@ import { useDebounceCallback } from 'usehooks-ts'
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from 'next/navigation';
 import { singUpSchema } from '@/schemas/signUpSchema';
-import axios from "axios"
+import axios, { AxiosError } from "axios"
+import { ApiResponse } from '@/types/ApiResponse';
 
 
 const SingUp = () => {
@@ -34,9 +35,13 @@ const SingUp = () => {
   setIsCheckingUsername(true)
   setUsernameMessage('')
   try {
-    await axios.get(`/api/check-username-unique?username=${debounced}`)
+   const response = await axios.get(`/api/check-username-unique?username=${debounced}`)
+    setUsernameMessage(response.data.message)
   } catch (error) {
-    
+    const axiosError = error as AxiosError<ApiResponse>;
+    setUsernameMessage(axiosError.response?.data.message ?? "Error is checking")
+  }finally{
+    setIsCheckingUsername(false)
   }
  }
   },[debounced])
