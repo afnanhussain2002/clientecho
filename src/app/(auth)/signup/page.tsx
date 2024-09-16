@@ -34,7 +34,7 @@ const SingUp = () => {
   setIsCheckingUsername(true)
   setUsernameMessage('')
   try {
-    await axios
+    await axios.get(`/api/check-username-unique?username=${debounced}`)
   } catch (error) {
     
   }
