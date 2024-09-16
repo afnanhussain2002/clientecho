@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -27,6 +27,10 @@ const SingUp = () => {
       password:''
     }
   })
+
+  useEffect(()=>{
+    
+  },[])
 
   return (
     <div>
