@@ -16,7 +16,7 @@ const SingUp = () => {
   const [username, setUsername] = useState('')
   const [usernameMessage, setUsernameMessage] = useState('')
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const debounced = useDebounceCallback(setUsername, 500)
   const { toast } = useToast()
@@ -49,7 +49,24 @@ const SingUp = () => {
   },[debounced])
 
   const onSubmit = async(data: z.infer<typeof singUpSchema>)=> {
-     
+     setIsSubmitting(true)
+     try {
+      const response = await axios.post<ApiResponse>('/api/sign-up',data)
+      toast({
+        title:'Success',
+        description:response.data.message
+      })
+      router.replace(`/verify/${username}`)
+      setIsSubmitting(false)
+     } catch (error) {
+      const axiosError = error as AxiosError<ApiResponse>;
+      let errorMessage = axiosError.response?.data.message
+      toast({
+        title:"Sing up failed",
+        description:errorMessage,
+        variant:"destructive"
+      })
+     }
   }
   return (
     <div>
