@@ -8,6 +8,7 @@ import { useDebounceCallback } from 'usehooks-ts'
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from 'next/navigation';
 import { singUpSchema } from '@/schemas/signUpSchema';
+import axios from "axios"
 
 
 const SingUp = () => {
@@ -29,8 +30,16 @@ const SingUp = () => {
   })
 
   useEffect(()=>{
+ const checkUsernameUnique = async() =>{
+  setIsCheckingUsername(true)
+  setUsernameMessage('')
+  try {
+    await axios
+  } catch (error) {
     
-  },[])
+  }
+ }
+  },[debounced])
 
   return (
     <div>
