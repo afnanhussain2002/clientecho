@@ -9,6 +9,8 @@ const SingUp = () => {
   const [username, setUsername] = useState('')
   const [usernameMessage, setUsernameMessage] = useState('')
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState('')
+  
   return (
     <div>
       
