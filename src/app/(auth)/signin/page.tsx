@@ -48,36 +48,7 @@ const SingIn = () => {
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <FormField
-            control={form.control}
-            name="username"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="username"
-                    {...field}
-                    onChange={(e) => {
-                      field.onChange(e);
-                      debounced(e.target.value);
-                    }}
-                  />
-                </FormControl>
-              
-                {
-                  isCheckingUsername && <Loader className="animate-spin"/>
-                 
-                }
-                {
-                  username &&  <p className={`${usernameMessage == "Username is unique" ?"text-green-500" : "text-red-500"}`}>{usernameMessage}</p>
-                }
-                
-               
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          
           <FormField
             control={form.control}
             name="email"
