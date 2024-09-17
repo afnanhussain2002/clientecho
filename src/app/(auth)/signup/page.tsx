@@ -70,7 +70,7 @@ const SingUp = () => {
   const onSubmit = async (data: z.infer<typeof singUpSchema>) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post<ApiResponse>("/api/sign-up", data);
+      const response = await axios.post<ApiResponse>('/api/sign-up', data);
       toast({
         title: "Success",
         description: response.data.message,
