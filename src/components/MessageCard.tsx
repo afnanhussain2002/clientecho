@@ -19,6 +19,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { Button } from "./ui/button";
+import { X } from "lucide-react";
   
 
 const MessageCard = () => {
@@ -28,7 +29,7 @@ const MessageCard = () => {
         <CardTitle>Card Title</CardTitle>
         <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline">Show Dialog</Button>
+        <Button variant="destructive"><X className="w-5 h-5"/></Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
