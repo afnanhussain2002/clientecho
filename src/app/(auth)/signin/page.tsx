@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import { signInSchema } from "@/schemas/signInSchema";
+import { signIn } from "next-auth/react";
 
 const SingIn = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +36,10 @@ const SingIn = () => {
 
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-   
+   await signIn('credentials',{
+    identifier: data.identifier,
+    password: data.password
+   })
   };
   return (
     <div>
