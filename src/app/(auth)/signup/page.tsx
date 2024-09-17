@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
 import { useDebounceCallback } from "usehooks-ts";
@@ -11,8 +11,8 @@ import { singUpSchema } from "@/schemas/signUpSchema";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import {
+  Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,11 +24,12 @@ import { Loader } from "lucide-react";
 
 const SingUp = () => {
   const [username, setUsername] = useState("");
+  console.log("Username------",username);
   const [usernameMessage, setUsernameMessage] = useState("");
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const debounced = useDebounceCallback(setUsername, 500);
+  const debounced = useDebounceCallback(setUsername, 300);
   const { toast } = useToast();
   const router = useRouter();
   const form = useForm<z.infer<typeof singUpSchema>>({
@@ -40,15 +41,18 @@ const SingUp = () => {
     },
   });
 
+
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      setIsCheckingUsername(true);
+      if (username) {
+        setIsCheckingUsername(true);
       setUsernameMessage("");
       try {
-        const response = await axios.get(
-          `/api/check-username-unique?username=${debounced}`
+        const response = await axios.get<ApiResponse>(
+          `/api/check-username-unique?username=${username}`
         );
         setUsernameMessage(response.data.message);
+        
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
         setUsernameMessage(
@@ -57,9 +61,11 @@ const SingUp = () => {
       } finally {
         setIsCheckingUsername(false);
       }
+   
+      }
     };
     checkUsernameUnique();
-  }, [debounced]);
+  }, [username]);
 
   const onSubmit = async (data: z.infer<typeof singUpSchema>) => {
     setIsSubmitting(true);
@@ -101,10 +107,14 @@ const SingUp = () => {
                     {...field}
                     onChange={(e) => {
                       field.onChange(e);
-                      setUsername(e.target.value);
+                      debounced(e.target.value);
                     }}
                   />
                 </FormControl>
+                {
+                  isCheckingUsername && <Loader className="animate-spin"/>
+                }
+                <p className={`${usernameMessage == "Username is unique" ?"text-green-500" : "text-red-500"}`}>{usernameMessage}</p>
                 <FormMessage />
               </FormItem>
             )}
