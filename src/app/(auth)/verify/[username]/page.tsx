@@ -9,7 +9,7 @@ import { z } from 'zod';
 
 const VerifyUsername = () => {
     const router = useRouter()
-    const params = useParams()
+    const params = useParams<{username:string}>()
     const {toast} = useToast()
 
     const form = useForm<z.infer<typeof verifySchema>>({
@@ -22,7 +22,7 @@ const VerifyUsername = () => {
 
       const onSubmit = async(data: z.infer<typeof verifySchema>) =>{
 
-        
+
 
       }
     return (
