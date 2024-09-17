@@ -111,10 +111,16 @@ const SingUp = () => {
                     }}
                   />
                 </FormControl>
+              
                 {
                   isCheckingUsername && <Loader className="animate-spin"/>
+                 
                 }
-                <p className={`${usernameMessage == "Username is unique" ?"text-green-500" : "text-red-500"}`}>{usernameMessage}</p>
+                {
+                  username &&  <p className={`${usernameMessage == "Username is unique" ?"text-green-500" : "text-red-500"}`}>{usernameMessage}</p>
+                }
+                
+               
                 <FormMessage />
               </FormItem>
             )}
