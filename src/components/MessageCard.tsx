@@ -20,9 +20,14 @@ import {
   } from "@/components/ui/alert-dialog"
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
+import { Message } from "@/model/User.model";
   
+type MessageCardProps ={
+    message:Message,
+    onMessageDelete: (messageId:string) => void
+}
 
-const MessageCard = () => {
+const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
   return (
     <Card>
       <CardHeader>
@@ -41,7 +46,7 @@ const MessageCard = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
