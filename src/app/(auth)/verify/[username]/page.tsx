@@ -19,6 +19,12 @@ const VerifyUsername = () => {
           password: "",
         },
       });
+
+      const onSubmit = async(data: z.infer<typeof verifySchema>) =>{
+
+        
+
+      }
     return (
         <div>
             
