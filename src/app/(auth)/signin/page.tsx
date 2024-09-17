@@ -36,10 +36,20 @@ const SingIn = () => {
 
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
-   await signIn('credentials',{
+  const response = await signIn('credentials',{
+    redirect:false,
     identifier: data.identifier,
     password: data.password
    })
+   if (response?.error) {
+    toast({
+        title:"Login failed",
+        description:"Incorrect username/email, password",
+        variant:"destructive"
+    })
+    
+   }
+
   };
   return (
     <div>
@@ -51,13 +61,13 @@ const SingIn = () => {
           
           <FormField
             control={form.control}
-            name="email"
+            name="identifier"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email or Username</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="email"
+                    placeholder="email/username"
                     {...field}
                   />
                 </FormControl>
