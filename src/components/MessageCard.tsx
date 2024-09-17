@@ -21,6 +21,7 @@ import {
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
 import { Message } from "@/model/User.model";
+import { useToast } from "@/hooks/use-toast";
   
 type MessageCardProps ={
     message:Message,
@@ -28,6 +29,9 @@ type MessageCardProps ={
 }
 
 const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
+    const {toast} = useToast()
+
+    
   return (
     <Card>
       <CardHeader>
