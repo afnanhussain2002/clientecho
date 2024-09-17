@@ -89,38 +89,34 @@ const SingUp = () => {
     }
   };
   return (
-    <div>
-      <div>
-        <h1>Sign up now</h1>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-center text-gray-900">Sign up now</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel className="block text-sm font-medium text-gray-700">Username</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="username"
                     {...field}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     onChange={(e) => {
                       field.onChange(e);
                       debounced(e.target.value);
                     }}
                   />
                 </FormControl>
-              
-                {
-                  isCheckingUsername && <Loader className="animate-spin"/>
-                 
-                }
-                {
-                  username &&  <p className={`${usernameMessage == "Username is unique" ?"text-green-500" : "text-red-500"}`}>{usernameMessage}</p>
-                }
-                
-               
+                {isCheckingUsername && <Loader className="animate-spin" />}
+                {username && (
+                  <p className={`${usernameMessage == "Username is unique" ? "text-green-500" : "text-red-500"} mt-1 text-sm`}>
+                    {usernameMessage}
+                  </p>
+                )}
                 <FormMessage />
               </FormItem>
             )}
@@ -130,11 +126,12 @@ const SingUp = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="block text-sm font-medium text-gray-700">Email</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="email"
                     {...field}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </FormControl>
                 <FormMessage />
@@ -146,39 +143,46 @@ const SingUp = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel className="block text-sm font-medium text-gray-700">Password</FormLabel>
                 <FormControl>
                   <Input
-                  type="password"
+                    type="password"
                     placeholder="password"
                     {...field}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={isSubmitting}>
-
-           {
-            isSubmitting ?(
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full px-4 py-2 font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            {isSubmitting ? (
               <>
-              <Loader/>Please Wait
+                <Loader className="inline-block w-4 h-4 mr-2 animate-spin" />
+                Please Wait
               </>
-            ):('Sign up')
-           }
+            ) : (
+              'Sign up'
+            )}
           </Button>
         </form>
       </Form>
       <div className="text-center mt-4">
-          <p>
-            Already a member?{' '}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
-              Sign in
-            </Link>
-          </p>
-        </div>
+        <p className="text-sm text-gray-600">
+          Already a member?{' '}
+          <Link href="/signin" className="text-indigo-600 hover:text-indigo-800">
+            Sign in
+          </Link>
+        </p>
+      </div>
     </div>
+  </div>
+  
   );
 };
 
