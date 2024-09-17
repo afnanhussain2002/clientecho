@@ -13,16 +13,16 @@ const VerifyUsername = () => {
     const {toast} = useToast()
 
     const form = useForm<z.infer<typeof verifySchema>>({
-        resolver: zodResolver(verifySchema),
-        defaultValues: {
-          email: "",
-          password: "",
-        },
+        resolver: zodResolver(verifySchema)
       });
 
       const onSubmit = async(data: z.infer<typeof verifySchema>) =>{
 
-
+try {
+    
+} catch (error) {
+    
+}
 
       }
     return (
