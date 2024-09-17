@@ -116,7 +116,7 @@ const SingIn = () => {
       <div className="text-center mt-4">
         <p className="text-sm text-gray-600">
           Not a member?{' '}
-          <Link href="/sign-up" className="text-indigo-600 hover:text-indigo-800">
+          <Link href="/signup" className="text-indigo-600 hover:text-indigo-800">
             Sign up
           </Link>
         </p>
