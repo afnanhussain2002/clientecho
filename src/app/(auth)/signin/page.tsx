@@ -49,6 +49,9 @@ const SingIn = () => {
     })
     
    }
+   if (response?.url) {
+    router.replace('/dashboard')
+   }
 
   };
   return (
