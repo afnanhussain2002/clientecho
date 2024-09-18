@@ -9,6 +9,7 @@ import { ApiResponse } from '@/types/ApiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import { Loader2, RefreshCcw } from 'lucide-react';
+import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -100,6 +101,15 @@ const Dashboard = () => {
             })
         }
     }
+
+    const {username} = session?.user as User
+
+    const baseUrl = `${window.location.protocol}//${window.location.host}`
+
+    const profileUrl = `${baseUrl}/u/${username}`
+
+    
+
     if (!session || !session.user) {
         return <div>Please Login</div>
     }
