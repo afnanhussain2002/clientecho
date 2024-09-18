@@ -9,11 +9,13 @@ const PublicProfile = () => {
   const { data: session, status } = useSession();
 
   if (status === "loading") {
-    return <Loader2 />;
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <Loader2 className="w-12 h-12" />
+  </div>
   }
-  if (!session || !session.user) {
+ /*  if (!session || !session.user) {
     return <div>User Not Found</div>;
-  }
+  } */
   return (
     <div className="mt-10 flex justify-center">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
