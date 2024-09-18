@@ -77,10 +77,26 @@ const Dashboard = () => {
 
     const handleSwitchChange = async() =>{
         try {
-            
+            const response = await axios.post<ApiResponse>('/api/accept-messages',{
+                acceptMessages: !acceptMessages
+            })
+            setValue('acceptMessages',!acceptMessages)
+            toast({
+                title: response.data.message,
+                variant:"default"
+
+            })
         } catch (error) {
-            
+            const axiosError = error as AxiosError<ApiResponse>;
+            toast({
+                title:"Error",
+                description: axiosError.response?.data.message || "Failed to fetch message settings",
+                variant:"destructive"
+            })
         }
+    }
+    if (!session || !session.user) {
+        return <div>Please Login</div>
     }
 
     return (
