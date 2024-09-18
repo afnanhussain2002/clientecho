@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 import UserModel from "@/model/User.model";
 
 
-export async function POST(request:Request){
+export async function DELETE(request:Request,{params}:{params:{messageId:string}}){
+    const messageId = params.messageId;
    await dbConnect()
 
     const session = await getServerSession(authOptions)
