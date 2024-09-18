@@ -21,6 +21,33 @@ export async function DELETE(request:Request,{params}:{params:{messageId:string}
         );
     }
 
+    try {
+      const updateResult =  await UserModel.updateOne(
+            {id:user._id},
+            {$pull:{messages:{_id:messageId}}}
+        )
+        if (updateResult?.modifiedCount == 0) {
+            return Response.json(
+                {
+                  success: false,
+                  message: "Message not found or already deleted",
+                },
+                { status: 501 }
+              );
+              
+        }
+        return Response.json(
+            {
+              success: true,
+              message: "Message Deleted",
+            },
+            { status: 200 }
+          );
+          
+    } catch (error) {
+        
+    }
+
 
 
 
