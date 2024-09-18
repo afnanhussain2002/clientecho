@@ -8,10 +8,11 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   const user: User = session?.user as User;
+  
   return (
     <div className="bg-white shadow-md p-4">
   <div className="container mx-auto flex justify-between items-center">
-    <a href="#" className="text-blue-600 text-lg font-semibold">Client Echo</a>
+    <a href="/" className="text-blue-600 text-lg font-semibold">Client Echo</a>
     <div>
       {session ? (
         <>
