@@ -46,6 +46,14 @@ export async function POST(request:Request){
             { status: 200 }
           );
     } catch (error) {
+      console.log('Error form send message', error);
+      return Response.json(
+          {
+            success: false,
+            message: "Something went wrong when get the message",
+          },
+          { status: 501 }
+        );
         
     }
 
