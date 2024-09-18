@@ -1,4 +1,5 @@
 'use client'
+import PublicForm from '@/components/PublicForm';
 import { User } from '@/model/User.model';
 import { Loader2 } from 'lucide-react';
 import { useSession } from 'next-auth/react';
@@ -20,6 +21,7 @@ const PublicProfile = () => {
             <h1 className='text-center text-4xl font-bold'>Public Profile Link</h1>
             <div>
                 <p>Send Anonymous Message to @{session?.user.username} </p>
+                <PublicForm/>
             </div>
         </div>
     );

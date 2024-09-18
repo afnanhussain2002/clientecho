@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { Input } from './ui/input';
-import { Button } from '@react-email/components';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { messageSchema } from '@/schemas/messageSchema';
 import { z } from 'zod';
+import { Button } from './ui/button';
 
 const PublicForm = () => {
    
@@ -26,7 +26,6 @@ const PublicForm = () => {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input placeholder="Write your message here" {...field} />
               </FormControl>
