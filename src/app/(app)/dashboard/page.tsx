@@ -20,6 +20,7 @@ const Dashboard = () => {
     const form = useForm({
         resolver: zodResolver(acceptMessagesSchema)
     })
+    const {register, watch, setValue} = form
     return (
         <div>
             dashboard
