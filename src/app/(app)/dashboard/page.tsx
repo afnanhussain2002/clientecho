@@ -49,7 +49,14 @@ const Dashboard = () => {
      setIsSwitchLoading(false)
 
      try {
-        
+        const response = await axios.get<ApiResponse>('/api/get-messages')
+        setMessages(response.data.messages || [])
+        if (refresh) {
+            toast({
+                title:"Refreshed Messages",
+                description:"Showing lates messages"
+            })
+        }
      } catch (error) {
         
      }
