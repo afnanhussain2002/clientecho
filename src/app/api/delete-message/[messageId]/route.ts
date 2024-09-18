@@ -1,7 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import { getServerSession, User } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
-import mongoose from "mongoose";
 import UserModel from "@/model/User.model";
 
 
@@ -45,6 +44,7 @@ export async function DELETE(request:Request,{params}:{params:{messageId:string}
           );
           
     } catch (error) {
+        console.log('Error on deleting message',error);
         return Response.json(
             {
               success: false,
