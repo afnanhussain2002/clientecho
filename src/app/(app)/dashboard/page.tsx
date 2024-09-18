@@ -70,9 +70,18 @@ const Dashboard = () => {
      }
     },[toast])
 
-    useEffect(() =>{
-        
-    },[])
+    useEffect(() => {
+       if (!session || !session.user) return fetchMessages()
+        fetchAcceptMessage()
+    },[session,fetchAcceptMessage,fetchMessages])
+
+    const handleSwitchChange = async() =>{
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
 
     return (
         <div>
