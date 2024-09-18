@@ -44,6 +44,17 @@ const Dashboard = () => {
         }
     },[setValue,toast])
 
+    const fetchMessages = useCallback(async(refresh:boolean = false) =>{
+     setIsLoading(true)
+     setIsSwitchLoading(false)
+
+     try {
+        
+     } catch (error) {
+        
+     }
+    },[])
+
     return (
         <div>
             dashboard
