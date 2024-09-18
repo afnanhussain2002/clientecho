@@ -60,7 +60,7 @@ const Dashboard = () => {
      } catch (error) {
         
      }
-    },[])
+    },[toast])
 
     return (
         <div>
