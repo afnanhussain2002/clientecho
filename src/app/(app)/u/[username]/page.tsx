@@ -16,8 +16,11 @@ const PublicProfile = () => {
     return <div>User Not Found</div>
 }
     return (
-        <div>
-            Public Profile of {session?.user.username}
+        <div className='mt-10'>
+            <h1 className='text-center text-4xl font-bold'>Public Profile Link</h1>
+            <div>
+                <p>Send Anonymous Message to @{session?.user.username} </p>
+            </div>
         </div>
     );
 };
