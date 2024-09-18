@@ -5,7 +5,7 @@ import { ApiResponse } from '@/types/ApiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
 import { useSession } from 'next-auth/react';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const Dashboard = () => {
@@ -69,6 +69,10 @@ const Dashboard = () => {
         setIsSwitchLoading(false)
      }
     },[toast])
+
+    useEffect(() =>{
+        
+    },[])
 
     return (
         <div>
