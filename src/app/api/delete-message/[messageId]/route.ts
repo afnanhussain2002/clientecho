@@ -45,7 +45,14 @@ export async function DELETE(request:Request,{params}:{params:{messageId:string}
           );
           
     } catch (error) {
-        
+        return Response.json(
+            {
+              success: false,
+              message: "Error on deleting message",
+            },
+            { status: 501 }
+          );
+          
     }
 
 
