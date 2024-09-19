@@ -188,7 +188,6 @@ const Dashboard = () => {
                 key={index}
                 message={message}
                 onMessageDelete={handleDeleteMessage}
-                className="p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition"
                 
               />
             ))
