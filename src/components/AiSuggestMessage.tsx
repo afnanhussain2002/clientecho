@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { toast } from "@/hooks/use-toast";
-import { Copy, Loader2 } from "lucide-react";
+import { Copy } from "lucide-react";
 
 
 const AiSuggestMessage = () => {
