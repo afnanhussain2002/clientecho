@@ -7,7 +7,7 @@ import { messageSchema } from '@/schemas/messageSchema';
 import { z } from 'zod';
 import { Button } from './ui/button';
 import dbConnect from '@/lib/dbConnect';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { ApiResponse } from '@/types/ApiResponse';
 import { toast } from '@/hooks/use-toast';
 
@@ -19,15 +19,23 @@ const PublicForm = () => {
       });
 
       const onSubmit = async (data: z.infer<typeof messageSchema>) => {
-        await dbConnect()
+     setLoading(true)
         try {
          const response =  await axios.post<ApiResponse>('/api/send-message',data)
          toast({
           title:'Success',
-          description:'Message send successfully'
+          description: response.data.message
          })
         } catch (error) {
-          
+          const axiosError = error as AxiosError<ApiResponse>;
+      let errorMessage = axiosError.response?.data.message;
+      toast({
+        title: "Message send failed",
+        description: errorMessage,
+        variant: "destructive",
+      });
+        }finally{
+          setLoading(false)
         }
            
       }
