@@ -24,6 +24,7 @@ import { Message } from "@/model/User.model";
 import { useToast } from "@/hooks/use-toast";
 import axios from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
+import dayjs from 'dayjs';
   
 type MessageCardProps ={
     message:Message,
@@ -49,7 +50,7 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
         <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive"><X className="w-5 h-5"/></Button>
+        <Button variant="destructive" className="w-1/6"><X className="w-5 h-5"/></Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
