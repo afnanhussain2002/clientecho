@@ -6,6 +6,9 @@ import { useForm } from 'react-hook-form';
 import { messageSchema } from '@/schemas/messageSchema';
 import { z } from 'zod';
 import { Button } from './ui/button';
+import dbConnect from '@/lib/dbConnect';
+import axios from 'axios';
+import { ApiResponse } from '@/types/ApiResponse';
 
 const PublicForm = () => {
    
@@ -14,7 +17,13 @@ const PublicForm = () => {
       });
 
       const onSubmit = async (data: z.infer<typeof messageSchema>) => {
-
+        await dbConnect()
+        try {
+          await axios.post<ApiResponse>('/api/send-message',data)
+        } catch (error) {
+          
+        }
+           
       }
 
     return (
