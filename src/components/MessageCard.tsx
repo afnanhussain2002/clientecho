@@ -36,7 +36,7 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
       const response =  axios.delete<ApiResponse>(`/api/delete-message/${message._id}`)
 
       toast({
-        title: response?.data.message,
+        title: "Delete",
 
       })
       onMessageDelete(message._id)
@@ -46,7 +46,7 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="destructive"><X className="w-5 h-5"/></Button>
@@ -65,7 +65,9 @@ const MessageCard = ({message, onMessageDelete}: MessageCardProps) => {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-        <CardDescription>Card Description</CardDescription>
+    <div className="text-sm">
+          {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
+        </div>
       </CardHeader>
       <CardContent>
      
