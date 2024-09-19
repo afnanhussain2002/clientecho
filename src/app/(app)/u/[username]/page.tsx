@@ -32,7 +32,7 @@ const {username} = params
             Send Anonymous Message to{" "}
             <span className="font-semibold">@{username}</span>
           </p>
-          <PublicForm />
+          <PublicForm username={username}/>
         </div>
       </div>
     </div>

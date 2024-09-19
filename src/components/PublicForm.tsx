@@ -11,17 +11,20 @@ import axios, { AxiosError } from 'axios';
 import { ApiResponse } from '@/types/ApiResponse';
 import { toast } from '@/hooks/use-toast';
 
-const PublicForm = () => {
+const PublicForm = ({username}: {username:string}) => {
   const [loading, setLoading] = useState(false)
    
     const form = useForm<z.infer<typeof messageSchema>>({
         resolver: zodResolver(messageSchema),
+        defaultValues:{
+          content:""
+        }
       });
 
       const onSubmit = async (data: z.infer<typeof messageSchema>) => {
      setLoading(true)
         try {
-         const response =  await axios.post<ApiResponse>('/api/send-message',data)
+         const response =  await axios.post<ApiResponse>(`/api/send-message/${username}`,data)
          toast({
           title:'Success',
           description: response.data.message
@@ -50,11 +53,12 @@ const PublicForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
-                    placeholder="Write your message here"
-                    {...field}
-                    className="w-full h-28 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                <Input
+  placeholder="Write your message here"
+  {...field}
+  className="w-full h-28 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 align-top"
+/>
+
                 </FormControl>
                 <FormMessage className="text-red-500 mt-1" />
               </FormItem>
