@@ -1,4 +1,5 @@
 "use client";
+import AiSuggestMessage from "@/components/AiSuggestMessage";
 import PublicForm from "@/components/PublicForm";
 import { User } from "@/model/User.model";
 import { Loader2 } from "lucide-react";
@@ -35,6 +36,7 @@ const {username} = params
           <PublicForm username={username}/>
         </div>
       </div>
+      <AiSuggestMessage/>
     </div>
   );
 };
