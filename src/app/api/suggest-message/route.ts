@@ -45,7 +45,7 @@ export async function POST(req:Request) {
    return Response.json(
      {
        success: true,
-       message: result,
+       message: result?.response?.candidates[0].content.parts[0].text?.split('||').map(msg => msg.trim()),
      },
      { status: 201 }
    );

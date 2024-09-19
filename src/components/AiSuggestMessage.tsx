@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 
 const AiSuggestMessage = () => {
+    const [messages, setMessages] = useState([])
+
+    const getAiMessage = () =>{
+        
+    }
+
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
       <div className="mb-6">
