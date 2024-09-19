@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
+import axios from "axios";
 
 const AiSuggestMessage = () => {
     const [messages, setMessages] = useState([])
 
-    const getAiMessage = () =>{
-        
+    const getAiMessage = async() =>{
+        const response = await axios.get('/api/suggest-message')
+        setMessages(response.data.message)
     }
 
-
+console.log(messages);
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
       <div className="mb-6">
-        <Button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+        <Button onClick={getAiMessage} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
           Suggest Messages
         </Button>
         <p className="mt-2 text-gray-700">

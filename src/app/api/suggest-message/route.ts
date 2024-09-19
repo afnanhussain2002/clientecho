@@ -29,7 +29,7 @@ const generationConfig = {
 };
 
 // Define async function to run the chat session
-export async function POST(req:Request) {
+export async function GET(req:Request) {
  try {
    // Start a new chat session with the model
    const chatSession = model.startChat({
