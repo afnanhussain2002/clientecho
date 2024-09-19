@@ -39,6 +39,7 @@ const PublicForm = ({ username }: { username: string }) => {
         title: "Success",
         description: response.data.message,
       });
+      form.reset({...form.getValues(), content:''})
       
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
