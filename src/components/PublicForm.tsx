@@ -7,13 +7,11 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
-import { Input } from "./ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { messageSchema } from "@/schemas/messageSchema";
 import { z } from "zod";
 import { Button } from "./ui/button";
-import dbConnect from "@/lib/dbConnect";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { toast } from "@/hooks/use-toast";
@@ -24,18 +22,19 @@ const PublicForm = ({ username }: { username: string }) => {
 
   const form = useForm<z.infer<typeof messageSchema>>({
     resolver: zodResolver(messageSchema),
-    defaultValues: {
-      content: "",
-    },
+   /*  defaultValues: {
+      content: ""
+    }, */
   });
 
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     setLoading(true);
     try {
       const response = await axios.post<ApiResponse>(
-        `/api/send-message/${username}`,
-        data
+        `/api/send-message/`,
+        {...data,username}
       );
+      console.log('main data-------',response.data);
       toast({
         title: "Success",
         description: response.data.message,
@@ -50,6 +49,7 @@ const PublicForm = ({ username }: { username: string }) => {
       });
     } finally {
       setLoading(false);
+      
     }
   };
 
