@@ -8,11 +8,11 @@ export async function POST(request: Request) {
 
   const session = await getServerSession(authOptions);
   const user: User = session?.user as User;
-  if (!user) {
+  if (!session || !session.user) {
     return Response.json(
       {
         success: false,
-        message: "Unauthorized",
+        message: "Not authorized",
       },
       { status: 401 }
     );
@@ -24,14 +24,14 @@ export async function POST(request: Request) {
   try {
   const updateUser = await UserModel.findByIdAndUpdate(
       userId,
-      { isAcceptMessages: acceptMessages },
+      { isAcceptMessage: acceptMessages },
       { new: true }
     );
     if (!updateUser) {
       return Response.json(
         {
           success: false,
-          message: "User not found",
+          message: "Unable to find user to update message acceptance status",
         },
         { status: 404 }
       )
@@ -61,11 +61,11 @@ export async function GET(request: Request) {
 
   const session = await getServerSession(authOptions);
   const user: User = session?.user as User;
-  if (!user) {
+  if (!session || !user) {
     return Response.json(
       {
         success: false,
-        message: "Unauthorized",
+        message: "Not authenticated",
       },
       { status: 401 }
     );

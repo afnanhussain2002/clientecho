@@ -26,6 +26,8 @@ const Dashboard = () => {
     }
     const {data:session} = useSession()
 
+    console.log('session------------', session?.user);
+
     const form = useForm({
         resolver: zodResolver(acceptMessagesSchema)
     })
@@ -38,6 +40,7 @@ const Dashboard = () => {
 
         try {
            const response = await axios.get<ApiResponse>('/api/accept-messages')
+           console.log('response form toggle------------', response);
            setValue('acceptMessages',response.data.isAcceptingMessages)
         } catch (error) {
             const axiosError = error as AxiosError<ApiResponse>;
@@ -57,6 +60,7 @@ const Dashboard = () => {
 
      try {
         const response = await axios.get<ApiResponse>('/api/get-messages')
+        console.log('Get message-----',response.data.message);
         setMessages(response.data.messages || [])
         if (refresh) {
             toast({

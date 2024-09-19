@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import UserModel from "@/model/User.model";
 
 
-export async function POST(request:Request){
+export async function GET(request:Request){
    await dbConnect()
 
     const session = await getServerSession(authOptions)
@@ -23,7 +23,7 @@ export async function POST(request:Request){
 
     try {
         const user = await UserModel.aggregate([
-            {$match: {id:'$messages'}},
+            {$match: {id:userId}},
             {$unwind:'$messages'},
             {$sort:{'messages.createdAt':-1}},
             {$group:{_id:'$_id', message:{$push:'$messages'}}}
