@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { Input } from './ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,8 +9,10 @@ import { Button } from './ui/button';
 import dbConnect from '@/lib/dbConnect';
 import axios from 'axios';
 import { ApiResponse } from '@/types/ApiResponse';
+import { toast } from '@/hooks/use-toast';
 
 const PublicForm = () => {
+  const [loading, setLoading] = useState(false)
    
     const form = useForm<z.infer<typeof messageSchema>>({
         resolver: zodResolver(messageSchema),
@@ -19,7 +21,11 @@ const PublicForm = () => {
       const onSubmit = async (data: z.infer<typeof messageSchema>) => {
         await dbConnect()
         try {
-          await axios.post<ApiResponse>('/api/send-message',data)
+         const response =  await axios.post<ApiResponse>('/api/send-message',data)
+         toast({
+          title:'Success',
+          description:'Message send successfully'
+         })
         } catch (error) {
           
         }
