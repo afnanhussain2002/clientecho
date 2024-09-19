@@ -75,9 +75,9 @@ const AiSuggestMessage = () => {
           
           ):
          <>
-         <p className="p-2 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">What's your favorite movie?</p>
+         <p className="p-2 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">Whats your favorite movie?</p>
          <p className="p-2 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">Do you have any pets?</p>
-         <p className="p-2 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">What's your dream job?</p>
+         <p className="p-2 bg-gray-200 rounded hover:bg-gray-300 cursor-pointer">Whats your dream job?</p>
          
          </>
         
