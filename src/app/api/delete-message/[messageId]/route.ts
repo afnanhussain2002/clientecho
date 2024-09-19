@@ -10,7 +10,7 @@ export async function DELETE(request:Request,{params}:{params:{messageId:string}
 
     const session = await getServerSession(authOptions)
     const user: User = session?.user as User
-    if (!user) {
+    if (!session || !user) {
         return Response.json(
           {
             success: false,
@@ -22,7 +22,7 @@ export async function DELETE(request:Request,{params}:{params:{messageId:string}
 
     try {
       const updateResult =  await UserModel.updateOne(
-            {id:user._id},
+            {_id:user._id},
             {$pull:{messages:{_id:messageId}}}
         )
         if (updateResult?.modifiedCount == 0) {
