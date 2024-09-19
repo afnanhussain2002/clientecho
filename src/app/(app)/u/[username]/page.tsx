@@ -11,14 +11,11 @@ const PublicProfile = () => {
 
 // const [loading, setLoading] = useState(false)
 const params = useParams()
-const {username} = params
+let {username} = params
  
-
-  /* if (loading) {
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-    <Loader2 className="w-12 h-12" />
-  </div>
-  } */
+if (Array.isArray(username)) {
+  username = username[0];
+}
   if (!username) {
     return <div className="flex justify-center items-center h-screen bg-gray-100">User Not Found</div>;
   }
