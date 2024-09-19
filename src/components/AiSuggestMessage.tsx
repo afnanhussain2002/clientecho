@@ -29,7 +29,7 @@ const AiSuggestMessage = () => {
 
   console.log(messages);
   return (
-    <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
+    <div className="p-6 bg-gray-100 h-[600px] flex flex-col items-center">
       <div className="mb-6">
         <Button
           onClick={getAiMessage}

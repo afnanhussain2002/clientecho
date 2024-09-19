@@ -23,7 +23,7 @@ const {username} = params
     return <div className="flex justify-center items-center h-screen bg-gray-100">User Not Found</div>;
   }
   return (
-    <div className="mt-10 flex justify-center">
+    <div className="mt-10 flex justify-center h-[600px]">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
         <h1 className="text-center text-4xl font-bold mb-4">
           Public Profile Link
