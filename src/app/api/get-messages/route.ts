@@ -34,7 +34,7 @@ export async function GET(request:Request){
             return Response.json(
                 {
                   success: false,
-                  message: "User not found by me",
+                  message: "User not found",
                 },
                 { status: 401 }
               );
