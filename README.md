@@ -129,7 +129,7 @@ Ensure you have **Node.js** (v16 or higher) installed.
    npm run dev
    ```
 
-5. **Visit** [http://localhost:3000](http://localhost:3000) to see the app in action.
+5. **Visit** [https://clientecho.vercel.app](https://clientecho.vercel.app) to see the app in action.
 
 ---
 
